@@ -1,0 +1,9 @@
+lbl = CO2-test
+Filename = dum-DataSET_CO2.xyz
+m = 3
+chemically_distinct_env = 2
+atoms_per_env = 1 2
+indices_per_env
+0
+1 2
+
