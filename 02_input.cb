@@ -1,0 +1,19 @@
+chemically_distinct_env = 2
+atoms_per_env = 1 2
+indices_per_env
+0
+1 2
+
+FileName     = Parent_01.xyz
+Desired_Size = 34
+addition     = 2
+
+cords = CO2_monomer.xyz
+topography = CO2_topography_points.xyz
+
+NN_pos_01 = BestWeights_00_r.pth.tar
+NN_pos_02 = BestWeights_01_theta.pth.tar
+NN_pos_03 = BestWeights_02_phi.pth.tar
+NN_ori_04 = BestWeights_03_alpha.pth.tar
+NN_ori_05 = BestWeights_04_beta.pth.tar
+NN_ori_06 = BestWeights_05_gamma.pth.tar                     
