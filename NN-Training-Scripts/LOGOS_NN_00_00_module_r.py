@@ -24,8 +24,10 @@ class MLP_model(nn.Module):
         sf.layers = nn.Sequential(
         nn.Linear(in_channel, 160),
         nn.ReLU(),
+        nn.Dropout(0.2),
         nn.Linear(160, 64),
         nn.ReLU(),
+        nn.Dropout(0.2),
         nn.Linear(64, 56),
         nn.ReLU(),
         nn.Linear(56, 42),
