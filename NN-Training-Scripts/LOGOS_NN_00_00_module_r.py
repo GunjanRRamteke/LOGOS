@@ -70,24 +70,27 @@ class NeuralNetwork_MAIN():
         optimizer = optim.Adam(sf.model.parameters(), learning_rate)
         loss_fn = nn.MSELoss()
 
-        batch_start = torch.arange(0, len(X_train), batch_size)
+        
         best_mse = np.inf
         best_weights = None
         history = []
 
         '''   Training Loop  '''
-
+        batch_start = torch.arange(0, len(X_train), batch_size)
         for epoch in range(n_epochs):
             sf.model.train()
+            perm = torch.randperm(len(X_train))
+            X_train_shuffled = X_train[perm]
+            y_train_shuffled = y_train[perm]
+
+            batch_start = torch.arange(0, len(X_train_shuffled), batch_size)
 
             with tqdm.tqdm(batch_start, unit="batch", mininterval=0, disable=True) as bar:
-                bar.set_description(f"Epoch {epoch}")
-                for start in bar:
-
-                    # take a batch
-                    X_batch = X_train[start:start+batch_size]
-                    y_batch = y_train[start:start+batch_size]
-
+                 bar.set_description(f"Epoch {epoch}")
+                 for start in bar:
+                    X_batch = X_train_shuffled[start:start+batch_size]
+                    y_batch = y_train_shuffled[start:start+batch_size]
+        
                     # forward pass
                     y_pred = sf.model(X_batch)
                     loss = loss_fn(y_pred, y_batch)
@@ -151,7 +154,7 @@ if __name__ == "__main__":
 
     PercentSplit = 0.7
     filename = 'BestWeights_00_r.pth.tar'
-    X_train, X_test, Y_train, Y_test = train_test_split(XinpF, Yprop, train_size=PercentSplit, shuffle=True)
+    X_train, X_test, Y_train, Y_test = train_test_split(XinpF, Yprop, train_size=PercentSplit, shuffle=True, random_state=42)
 
     NNetwork = NeuralNetwork_MAIN()
     NNetwork.NeuralNetwork(X_train, Y_train, filename)
