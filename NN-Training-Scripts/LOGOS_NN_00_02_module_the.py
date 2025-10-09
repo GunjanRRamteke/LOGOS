@@ -153,7 +153,7 @@ if __name__ == "__main__":
 
     PercentSplit = 0.7
     filename = 'BestWeights_02_th.pth.tar'
-    X_train, X_test, Y_train, Y_test = train_test_split(XinpF, Yprop, train_size=PercentSplit, shuffle=True)
+    X_train, X_test, Y_train, Y_test = train_test_split(XinpF, Yprop, train_size=PercentSplit, shuffle=True, random_state=42)
 
     NNetwork = NeuralNetwork_MAIN()
     NNetwork.NeuralNetwork(X_train, Y_train, filename)
